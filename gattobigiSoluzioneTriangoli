@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+float ipotenusa(float a, float b);
+void main(){
+    float a=0, b=0, c=0;
+    int check=0;
+    while(check==0){
+        while(a<=0){
+            printf("inserisci lato a maggiore di 0: \n");
+            scanf("%f", &a);
+        }
+        while(b<=0){
+            printf("inserisci lato b maggiore di 0: \n");
+            scanf("%f", &b);
+        }
+        while(c<=0){
+            printf("inserisci lato c maggiore di 0: \n");  
+            scanf("%f", &c);
+        }
+        if(a<(b+c)&&a>abs(b-c)){//controllo se tutti i lati sono maggiori della differenza e minori della somma degli altri lati
+            if(b<(a+c)&&b>abs(a-c)){
+                if(c<(b+a)&&c>abs(b-a)){
+                    check=1;
+                }
+            }
+        }else{
+            printf("Non esistono triangoli di queste dimensioni, reinserisci i dati \n");
+
+            a=0,b=0,c=0;
+        }
+    }
+    if(a==b&&b==c){
+        printf("Il triangolo è equilatero \n");
+    }
+    if((a==b||b==c)||(c==a)) {
+        printf("il triangolo è isoscele\n");
+    }else{
+        printf("il triangolo è scaleno\n");
+    }
+    float max=0;
+        if(a>max){
+            max=a;
+        }
+        if(b>max){
+            max=b;
+        }
+        if(c>max){
+            max=c;
+        }//il massimo in questo caso è l'ipotenusa che andremo a confrontare con quella ottenuta dal teorema di pitagora
+    float ipo=0;
+    if(a==max){
+        ipo=ipotenusa(b,c);
+    }
+    if(b==max){
+        ipo=ipotenusa(a,c);
+    }
+    if(c==max){
+        ipo=ipotenusa(a,b);
+    }
+    if(ipo==max){//per controllare se il triangolo è rettangolo utilizzo il teorema di pitagora e se viene applicato correttamente allora significa che è rettangolo
+        printf("triangoo rettangolo \n");
+    }
+}
+float ipotenusa(float a,float b){
+    return sqrt((b*b)+(a*a));
+}
